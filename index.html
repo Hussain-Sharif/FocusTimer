@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus Timer</title>
+    <link href="index.css" rel="stylesheet">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+     
+</head>
+<body class="p-4 w-screen bg-black flex gap-8 flex-col justify-center items-center">
+    <div class="bg-white rounded-2xl p-2 space-y-4 flex gap-2 flex-col justify-center items-center ">
+        <div>
+            <p>Audio Alert is Played when this tab hidden by the user</p>
+            <audio
+            id="audio-player"
+            allow="autoplay"
+            src="audios/timer-alert.wav"></audio>
+        </div>
+        <div class="flex flex-col w-full space-y-2">
+            <label id="session-title-label">Enter a Energetic Promodono Session Name
+                <br>
+                <span >You can only start the Timer when you are able to enter the Title of the session</span>
+            </label>
+            <input for="session-title-label"
+                id="session-title"
+                type="text" 
+                placeholder="Enter > 4 characters"
+                class="border-b-2 w-[90%] outline-none text-lg "
+            />
+            <p id="title-display" class="text-xl text-Green font-bold self-center"></p>
+        </div>
+        <div class="border-b border-black flex justify-center items-center gap-4 p-2 ">
+            <div class="flex flex-col gap-1">
+                <button 
+                id="addMinBtn"
+                type="button"
+                class="text-xl bg-green-800 rounded-t-2xl rounded-b-md"
+                >+</button>
+                <span
+                id="minValue" 
+                class="border border-black scroll-color-red rounded-lg text-center text-2xl w-[60px]"
+                ></span>
+                <button 
+                id="subMinBtn"
+                type="button"
+                class="text-xl bg-red-800 rounded-b-2xl rounded-t-md"
+                >-</button>
+            </div>
+
+            <div class="flex flex-col gap-1">
+                <button 
+                id="addSecBtn"
+                type="button"
+                class="text-xl bg-green-800 rounded-t-2xl rounded-b-md"
+                >+</button>
+                <span 
+                id="secValue"
+                
+                class="border border-black scroll-color-red rounded-lg text-center text-2xl w-[60px]"
+                ></span>
+                <button 
+                id="subSecBtn"
+                type="button"
+                class="text-xl bg-red-800 rounded-b-2xl rounded-t-md"
+                >-</button>
+            </div>
+        </div>
+
+        <div class="flex flex-col items-center space-y-4">
+            <button
+            id="startBtn"
+            type="button"
+            class="p-2 bg-cyan-600 rounded-xl text-lg"
+            >Start</button>
+            <div id="timer-starter-div"
+            class="hidden flex justify-center items-center gap-4">
+                <button
+                    id="pauseBtn"
+                    type="button"
+                    class="p-2 bg-cyan-600 rounded-2xl text-lg"
+                    >Pause</button>
+                <button
+                id="resetBtn"
+            type="button"
+                class="p-2 border text-cyan-600 border-cyan-600 rounded-2xl text-lg"
+                >ReSet</button>
+            </div>
+            <div>
+                <p id="status-text"></p>
+            </div>
+        </div>
+    </div>
+    <div class="bg-white rounded-2xl p-4 space-y-4 w-[90%]">
+        <h2>All Time Sessions </h2>
+        <ul id="Timer-sessions-container"
+            class="border-t  
+            flex flex-col justify-center items-center
+            p-2 space-y-6"
+        >
+        <p>No Sessions Recorded</p>
+    </ul>
+    </div>
+    <script defer src="index.js"></script>
+</body>
+</html>
