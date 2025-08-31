@@ -9,3 +9,399 @@
     input[type="number"] {
         -moz-appearance: textfield;
     }
+
+    /* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+/* Layout Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.header-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+/* Cards */
+.info-card, .timer-card, .sessions-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+/* Info Card */
+.main-title {
+    font-size: 2.5rem;
+    color: #4a5568;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: #718096;
+    margin-bottom: 25px;
+}
+
+.features-list h3 {
+    color: #4a5568;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.features-list ul {
+    list-style: none;
+    space-y: 10px;
+}
+
+.features-list li {
+    padding: 8px 0;
+    color: #2d3748;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+/* Timer Card */
+.audio-info {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.audio-indicator {
+    background: #e6fffa;
+    color: #285e61;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    display: inline-block;
+}
+
+/* Session Section */
+.session-section {
+    margin-bottom: 30px;
+}
+
+.session-label {
+    display: block;
+    font-weight: 600;
+    color: #4a5568;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.requirement-text {
+    display: block;
+    font-size: 0.85rem;
+    color: #a0aec0;
+    font-weight: 400;
+    margin-top: 5px;
+}
+
+.session-input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #f7fafc;
+}
+
+.session-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.session-title-display {
+    background: #f0fff4;
+    color: #22543d;
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-align: center;
+    border: 2px solid #9ae6b4;
+}
+
+/* Timer Controls */
+.timer-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+}
+
+.time-setter {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: #f8fafc;
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid #e2e8f0;
+}
+
+.time-input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.time-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.time-btn-add {
+    background: #48bb78;
+    color: white;
+}
+
+.time-btn-add:hover {
+    background: #38a169;
+    transform: translateY(-2px);
+}
+
+.time-btn-sub {
+    background: #f56565;
+    color: white;
+}
+
+.time-btn-sub:hover {
+    background: #e53e3e;
+    transform: translateY(-2px);
+}
+
+.time-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.time-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2d3748;
+    background: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 2px solid #cbd5e0;
+    min-width: 80px;
+    text-align: center;
+}
+
+.time-label {
+    font-size: 0.8rem;
+    color: #718096;
+    font-weight: 600;
+}
+
+.time-separator {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #4a5568;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    width: 100%;
+}
+
+.btn {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 200px;
+}
+
+.btn-primary {
+    background: #667eea;
+    color: white;
+}
+
+.btn-primary:hover:not(.btn-disabled) {
+    background: #5a6fd8;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.btn-disabled {
+    background: #a0aec0;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.btn-secondary {
+    background: #ed8936;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #dd6b20;
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background: transparent;
+    color: #667eea;
+    border: 2px solid #667eea;
+}
+
+.btn-outline:hover {
+    background: #667eea;
+    color: white;
+}
+
+.timer-controls-active {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.status-text {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    background: #edf2f7;
+    color: #4a5568;
+}
+
+.status-completed {
+    background: #f0fff4;
+    color: #22543d;
+    border: 1px solid #9ae6b4;
+}
+
+/* Sessions Card */
+.sessions-title {
+    color: #4a5568;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.sessions-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.no-sessions {
+    text-align: center;
+    color: #a0aec0;
+    font-style: italic;
+    padding: 40px;
+}
+
+.session-item {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.session-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #2d3748;
+}
+
+.session-time {
+    color: #4a5568;
+    font-size: 0.95rem;
+}
+
+.session-distractions {
+    font-size: 0.9rem;
+    color: #d69e2e;
+}
+
+/* Utility Classes */
+.hidden {
+    display: none !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .time-setter {
+        /* flex-direction: column; */
+        gap: 15px;
+    }
+    
+    .time-separator {
+        /* transform: rotate(90deg); */
+        font-size: 2rem;
+    }
+    
+    .timer-controls-active {
+        flex-direction: column;
+    }
+    
+    .btn {
+        min-width: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .info-card, .timer-card, .sessions-card {
+        padding: 20px;
+    }
+    
+    .time-value {
+        font-size: 2rem;
+        min-width: 60px;
+    }
+}

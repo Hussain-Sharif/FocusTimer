@@ -34,7 +34,7 @@ const u_allStatusEnum={
 }
 
 // State creations
-let s_totalTimeSet=25*60;
+let s_totalTimeSet=10;
 let s_targetEndTime = null;
 let s_currentTimer=u_allStatusEnum.notStarted
 let s_audioPaused=false;
@@ -102,7 +102,7 @@ function startBtnEventHandler(startTimer=true){
     titleDisplay.textContent=sessionTitleInput.value
     s_currentTimer=u_allStatusEnum.isRunning
     statusUI()
-    pauseBtn.classList.remove("hidden")
+    pauseBtn.classList.remove("btn-disabled")
     pauseBtn.textContent="Pause"
     resetBtn.textContent="ReStart"
 
@@ -146,7 +146,7 @@ resetBtn.addEventListener("click",()=>{
     sessionTitleLabel.classList.remove("hidden")
     sessionTitleInput.value=''
     
-    if(s_timeSetByUser !== s_totalTimeSet && s_totalTimeSet < s_timeSetByUser) {
+    if(s_timeSetByUser !== s_totalTimeSet && s_totalTimeSet && s_totalTimeSet < s_timeSetByUser) {
         listOfAllSessions() 
     }
     s_totalTimeSet=25*60
@@ -154,13 +154,14 @@ resetBtn.addEventListener("click",()=>{
     statusUI()
     timeUI()
     changeUIStartPause(false)
+    startBtn.classList.add('btn-disabled')
 })
 
 //Completion of Timer
 function completeTimer(){
     clearInterval(timerSetUID)
     s_currentTimer=u_allStatusEnum.isCompleted
-    pauseBtn.classList.add("hidden")
+    pauseBtn.classList.add("btn-disabled")
     resetBtn.textContent="ReStart the Timer Again"
 
     statusUI()
@@ -184,6 +185,7 @@ document.addEventListener("visibilitychange", async(event) => {
 
     if(document.visibilityState==='visible' && s_audioPaused){ // Remove this to have manual Resume click by user.
         s_currentTimer=u_allStatusEnum.isPaused
+        console.log("Is visible so getting started")
         pauseBtnEventHandler()
     }
     
@@ -214,12 +216,24 @@ function timeUI(){
     secValue.textContent=String(s_totalTimeSet%u_minSecCal).padStart(2,'0');  
 }
 
+sessionTitleInput.addEventListener('input', function(event) {
+    console.log(event.target.value,event.target.value.length)
+    if(event.target.value.length >= 5) {
+        startBtn.classList.remove("btn-disabled")
+        startBtn.disabled = false
+    } else {
+        startBtn.classList.add("btn-disabled")
+        startBtn.disabled = true
+    }
+})
+
+
 function changeUIStartPause(isStarted){
     if(isStarted){
-        startBtn.classList.add('hidden')
+        startBtn.classList.add('btn-disabled')
         timerPauseDiv.classList.remove('hidden')
     }else{
-        startBtn.classList.remove('hidden')
+        startBtn.classList.remove('btn-disabled')
         timerPauseDiv.classList.add('hidden')
     }
 }
@@ -227,7 +241,7 @@ function changeUIStartPause(isStarted){
 function statusUI(){
     statusText.textContent=s_currentTimer;
     if(s_currentTimer===u_allStatusEnum.isCompleted){
-        statusText.classList.add(["text-green-500"])
+        statusText.classList.add("status-completed")
     }
 }
 
@@ -268,10 +282,10 @@ function listOfAllSessions(){
         eachSession.appendChild(elpasedTime)
         eachSession.appendChild(noTimesDistracted)
 
-        eachSession.classList.add("border", "border-gray-300", "rounded-lg", "p-4", "space-y-2", "w-full")
-        titleOfSession.classList.add("font-bold", "text-lg")
-        elpasedTime.classList.add("text-gray-600")
-        noTimesDistracted.classList.add("text-sm", "text-orange-600")
+        eachSession.classList.add('session-item')
+        titleOfSession.classList.add('session-title')
+        elpasedTime.classList.add('session-time')
+        noTimesDistracted.classList.add('session-distractions')
 
         
         sessionList.appendChild(eachSession)
@@ -285,12 +299,3 @@ function listOfAllSessions(){
 
 }
 
-sessionTitleInput.addEventListener('input', function() {
-    if(this.value.length >= 5) {
-        startBtn.classList.remove('opacity-50', 'cursor-not-allowed')
-        startBtn.disabled = false
-    } else {
-        startBtn.classList.add('opacity-50', 'cursor-not-allowed')
-        startBtn.disabled = true
-    }
-})

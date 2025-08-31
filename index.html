@@ -3,127 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Focus Timer</title>
+    <title>FocusTimer - Distraction-Free Productivity</title>
     <link href="index.css" rel="stylesheet">
-        <script src="https://cdn.tailwindcss.com"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-     
 </head>
-<body class="p-4 w-screen bg-black flex gap-8 flex-col justify-center items-center">
-    <div class="flex justify-center items-center gap-10 w-full">
-
-        <div class="bg-white rounded-2xl p-2 w-full">
-            <h1 class="text-3xl">FocusTimer-Promodono Timer</h1>
-            <ul>
-                <li>Here Users Can be more productive</li>
-                <li>With Audio Alert Feature</li>
-            </ul>
-
-            <p>Let's Understand How it works</p>
-            <ul>
-                <li>Need to Enter Productive Session Title</li>
-                <li>With more than 4 Character's else start button won't work</li>
-                <li>When User makes an Tab Switch then a Audio is played & Timer get's paused Automatically!!</li>
-                <li>When Return Back to FocusTimer Audio get Paused & Timer get's Resume</li>
-                <li>User have Log Productive Sessions and figure it out how productive and distractive are your actions </li>
-                <li>Hope this Help's to Be more Productive</li>
-
-            </ul>
-        </div>
-
-            <div class="bg-white w-full rounded-2xl p-2 space-y-4 flex gap-2 flex-col justify-center items-center ">
-            <div>
-                <p>Audio Alert is Played when this tab hidden by the user</p>
-                <audio
-                id="audio-player"
-                allow="autoplay"
-                src="audios/timer-alert.wav"></audio>
-            </div>
-            <div class="flex flex-col w-full space-y-2">
-                <label id="session-title-label">Enter a Energetic Promodono Session Name
-                    <br>
-                    <span >You can only start the Timer when you are able to enter the Title of the session</span>
-                </label>
-                <input for="session-title-label"
-                    id="session-title"
-                    type="text" 
-                    placeholder="Enter > 4 characters"
-                    class="border-b-2 w-[90%] outline-none text-lg "
-                />
-                <p id="title-display" class="text-xl text-Green font-bold self-center"></p>
-            </div>
-            <div class="border-b border-black flex justify-center items-center gap-4 p-2 ">
-                <div class="flex flex-col gap-1">
-                    <button 
-                    id="addMinBtn"
-                    type="button"
-                    class="text-xl bg-green-800 rounded-t-2xl rounded-b-md"
-                    >+</button>
-                    <span
-                    id="minValue" 
-                    class="border border-black scroll-color-red rounded-lg text-center text-2xl w-[60px]"
-                    ></span>
-                    <button 
-                    id="subMinBtn"
-                    type="button"
-                    class="text-xl bg-red-800 rounded-b-2xl rounded-t-md"
-                    >-</button>
-                </div>
-
-                <div class="flex flex-col gap-1">
-                    <button 
-                    id="addSecBtn"
-                    type="button"
-                    class="text-xl bg-green-800 rounded-t-2xl rounded-b-md"
-                    >+</button>
-                    <span 
-                    id="secValue"
-                    
-                    class="border border-black scroll-color-red rounded-lg text-center text-2xl w-[60px]"
-                    ></span>
-                    <button 
-                    id="subSecBtn"
-                    type="button"
-                    class="text-xl bg-red-800 rounded-b-2xl rounded-t-md"
-                    >-</button>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header-section">
+            <div class="info-card">
+                <h1 class="main-title">🎯 FocusTimer</h1>
+                <p class="subtitle">Pomodoro Timer with Smart Distraction Detection</p>
+                
+                <div class="features-list">
+                    <h3>How it works:</h3>
+                    <ul>
+                        <li>✅ Set your focus session with a meaningful title (5+ characters)</li>
+                        <li>🔄 Timer automatically pauses when you switch tabs</li>
+                        <li>🔊 Audio alert reminds you to stay focused</li>
+                        <li>📊 Track your productivity and distraction patterns</li>
+                        <li>🎉 Celebrate completed focus sessions</li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="flex flex-col items-center space-y-4">
-                <button
-                id="startBtn"
-                type="button"
-                class="p-2 bg-cyan-600 rounded-xl text-lg"
-                >Start</button>
-                <div id="timer-starter-div"
-                class="hidden flex justify-center items-center gap-4">
-                    <button
-                        id="pauseBtn"
-                        type="button"
-                        class="p-2 bg-cyan-600 rounded-2xl text-lg"
-                        >Pause</button>
-                    <button
-                    id="resetBtn"
-                type="button"
-                    class="p-2 border text-cyan-600 border-cyan-600 rounded-2xl text-lg"
-                    >ReSet</button>
+            <!-- Timer Card -->
+            <div class="timer-card">
+                <div class="audio-info">
+                    <span class="audio-indicator">🔊 Audio alerts enabled</span>
+                    <audio id="audio-player" src="audios/timer-alert.wav"></audio>
                 </div>
-                <div>
-                    <p id="status-text"></p>
+
+                <!-- Session Title Section -->
+                <div class="session-section">
+                    <label id="session-title-label" class="session-label">
+                        📝 Name your focus session
+                        <span class="requirement-text">Minimum 5 characters to unlock timer</span>
+                    </label>
+                    <input 
+                        id="session-title"
+                        type="text" 
+                        placeholder="e.g., Study JavaScript APIs, Write project report..."
+                        class="session-input"
+                    />
+                    <p id="title-display" class="session-title-display hidden"></p>
+                </div>
+
+                <!-- Timer Controls -->
+                <div class="timer-controls">
+                    <div class="time-setter">
+                        <div class="time-input-group">
+                            <button id="addMinBtn" class="time-btn time-btn-add">+</button>
+                            <div class="time-display">
+                                <span id="minValue" class="time-value"></span>
+                                <span class="time-label">MIN</span>
+                            </div>
+                            <button id="subMinBtn" class="time-btn time-btn-sub">-</button>
+                        </div>
+                        
+                        <div class="time-separator">:</div>
+                        
+                        <div class="time-input-group">
+                            <button id="addSecBtn" class="time-btn time-btn-add">+</button>
+                            <div class="time-display">
+                                <span id="secValue" class="time-value"></span>
+                                <span class="time-label">SEC</span>
+                            </div>
+                            <button id="subSecBtn" class="time-btn time-btn-sub">-</button>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button id="startBtn" class="btn btn-primary btn-disabled">
+                            🚀 Start Focus Session
+                        </button>
+                        
+                        <div id="timer-starter-div" class="timer-controls-active hidden">
+                            <button id="pauseBtn" class="btn btn-secondary">⏸️ Pause</button>
+                            <button id="resetBtn" class="btn btn-outline">🔄 Reset</button>
+                        </div>
+                        
+                        <p id="status-text" class="status-text"></p>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Sessions History -->
+        <div class="sessions-card">
+            <h2 class="sessions-title">📈 Your Focus Sessions</h2>
+            <ul id="Timer-sessions-container" class="sessions-list">
+                <li class="no-sessions">No sessions recorded yet. Start your first focus session!</li>
+            </ul>
+        </div>
     </div>
-    <div class="bg-white rounded-2xl p-4 space-y-4 w-[90%]">
-        <h2>All Time Sessions </h2>
-        <ul id="Timer-sessions-container"
-            class="border-t  
-            flex flex-col justify-center items-center
-            p-2 space-y-6"
-        >
-        <p>No Sessions Recorded</p>
-    </ul>
-    </div>
+
     <script defer src="index.js"></script>
 </body>
 </html>
