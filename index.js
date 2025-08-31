@@ -34,7 +34,7 @@ const u_allStatusEnum={
 }
 
 // State creations
-let s_totalTimeSet=10;
+let s_totalTimeSet=25*60;
 let s_targetEndTime = null;
 let s_currentTimer=u_allStatusEnum.notStarted
 let s_audioPaused=false;
@@ -146,8 +146,11 @@ resetBtn.addEventListener("click",()=>{
     sessionTitleLabel.classList.remove("hidden")
     sessionTitleInput.value=''
     
-    if(s_totalTimeSet) listOfAllSessions()
+    if(s_timeSetByUser !== s_totalTimeSet && s_totalTimeSet < s_timeSetByUser) {
+        listOfAllSessions() 
+    }
     s_totalTimeSet=25*60
+    s_timeSetByUser = 25*60
     statusUI()
     timeUI()
     changeUIStartPause(false)
@@ -265,7 +268,11 @@ function listOfAllSessions(){
         eachSession.appendChild(elpasedTime)
         eachSession.appendChild(noTimesDistracted)
 
-        eachSession.classList.add(["flex","flex-col" ,"items-center" ,"gap-6"])
+        eachSession.classList.add("border", "border-gray-300", "rounded-lg", "p-4", "space-y-2", "w-full")
+        titleOfSession.classList.add("font-bold", "text-lg")
+        elpasedTime.classList.add("text-gray-600")
+        noTimesDistracted.classList.add("text-sm", "text-orange-600")
+
         
         sessionList.appendChild(eachSession)
     });
@@ -277,3 +284,13 @@ function listOfAllSessions(){
 
 
 }
+
+sessionTitleInput.addEventListener('input', function() {
+    if(this.value.length >= 5) {
+        startBtn.classList.remove('opacity-50', 'cursor-not-allowed')
+        startBtn.disabled = false
+    } else {
+        startBtn.classList.add('opacity-50', 'cursor-not-allowed')
+        startBtn.disabled = true
+    }
+})
