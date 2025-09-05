@@ -4,6 +4,7 @@ const sessionTitleLabel=document.getElementById("session-title-label")
 const statusText=document.getElementById('status-text')
 const titleDisplay=document.getElementById('title-display')
 const sessionList=document.getElementById('Timer-sessions-container')
+const countSpanEle=document.getElementById("distract-span-count")
 
 const addMinBtn=document.getElementById("addMinBtn")
 const subMinBtn=document.getElementById("subMinBtn")
@@ -19,7 +20,6 @@ const pauseBtn=document.getElementById('pauseBtn')
 const timerPauseDiv=document.getElementById("timer-starter-div")
 
 const audioPlayer=document.getElementById("audio-player")
-
 
 
 // Logics starts here!!...
@@ -46,6 +46,7 @@ let s_timeSetByUser=s_totalTimeSet
 // setting the state with values 
 window.onload=()=>{
     statusUI()
+    distractionCountSpanEleUI()
     minValue.textContent=String(Math.floor(s_totalTimeSet/u_minSecCal)).padStart(2,'0');
     secValue.textContent=String(s_totalTimeSet%u_minSecCal).padStart(2,'0');    
 }
@@ -197,6 +198,7 @@ document.addEventListener("visibilitychange", async(event) => {
         s_audioPaused=!audioPlayer.paused
         s_currentTimer=u_allStatusEnum.isPaused
         s_sessionDistractionCount++;
+        distractionCountSpanEleUI()
         console.log("Restarted audio from 0 (hidden)");
     } catch (err) {
       console.log("Play failed:", err);
@@ -226,6 +228,10 @@ sessionTitleInput.addEventListener('input', function(event) {
         startBtn.disabled = true
     }
 })
+
+function distractionCountSpanEleUI(){
+    countSpanEle.textContent=s_sessionDistractionCount;
+}
 
 
 function changeUIStartPause(isStarted){
@@ -294,7 +300,7 @@ function listOfAllSessions(){
     
 
     s_sessionDistractionCount=0
-    
+    distractionCountSpanEleUI()    
 
 
 }

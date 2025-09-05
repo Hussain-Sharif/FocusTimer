@@ -405,3 +405,23 @@ body {
         min-width: 60px;
     }
 }
+
+
+.dist-container{
+    border:#d69e2e solid 2px ;
+    border-radius: 12px;
+    padding: 6px;
+    padding-top: 2px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+.dist-container p{
+    color:#4a5568;
+    font-weight: bolder;
+    font-size: 16px;
+}
+.dist-container span{
+    color:#e53e3e;
+    font-size: 35px;
+}
